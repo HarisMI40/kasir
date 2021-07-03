@@ -1,0 +1,38 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use App\Models\product;
+
+
+class ProductSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        $products = product::create(
+		        [
+		    		'nama_product' => 'rendang',
+		    		'qty' => 12,
+		    		'harga' => 10000,
+				]
+		);
+
+		$products = product::create(
+		        [
+		    		'nama_product' => 'ayam bakar',
+		    		'qty' => 10,
+		    		'harga' => 20000,
+				]
+		);
+
+		 // $table->string('nama_product');
+   //          $table->integer('qty');
+   //          $table->integer('harga');
+    }
+}

@@ -1,0 +1,17 @@
+* {
+	border:1px solid black;
+}
+
+.kiri{
+	background-color: red;
+	width:80%;
+	height: 400px;
+	display: inline-block;
+}
+
+.kanan{
+	background-color:green;
+	width:20%;
+	height: 400px;
+	display: inline-block;
+}
