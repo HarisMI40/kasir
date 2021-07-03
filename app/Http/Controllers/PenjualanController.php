@@ -13,16 +13,29 @@ class PenjualanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index()
     {
+        $penjualan_terakhir = penjualan::get()->last();
+
+        $id = $penjualan_terakhir->id;
+
+        if($penjualan_terakhir->done){
+            $id = $penjualan_terakhir->id + 1;
+        }
+
+
+        $penjualan = penjualan::with('DetailPenjualan', 'DetailPenjualan.product')->where('id', $id)->first();
+
+        // dd($id);
+
         $products = product::all();
 
         // if($id == null){
-            $penjualan = penjualan::with('DetailPenjualan', 'DetailPenjualan.product')->where('id', $id)->first();
+            
         // }
         
 
-        return view('home', compact('products','penjualan'));
+        return view('home', compact('products','penjualan', 'id'));
     }
 
     /**
@@ -88,8 +101,8 @@ class PenjualanController extends Controller
      */
     public function update(Request $request, penjualan $penjualan)
     {
-        //
-    }
+         $penjualan->update(['done' => 1]);
+         return redirect()->back();    }
 
     /**
      * Remove the specified resource from storage.
@@ -99,6 +112,6 @@ class PenjualanController extends Controller
      */
     public function destroy(penjualan $penjualan)
     {
-        dd($penjualan);
+
     }
 }

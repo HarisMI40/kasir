@@ -30,7 +30,7 @@
 							    		</tr>
 							    	</table>
 							    </p>
-							    <form action="{{route('detailPenjualan.store', [$penjualan->id, $product->id])}}" method="POST">
+							    <form action="{{route('detailPenjualan.store', [$id, $product->id])}}" method="POST">
 							    	@csrf
 							    	@method('POST')
 
@@ -45,8 +45,8 @@
 				
 			</div>
 
-
 			<div class="col-md-4 border p-3">
+			  @if($penjualan)
 				@foreach($penjualan->DetailPenjualan as $detail)
 					<div class="col-md-12 mb-3">
 						<!-- <div class="card">
@@ -103,7 +103,12 @@
 						</tr>
 					</table>
 					<p>---------------------------------------</p>
-					<button class="btn btn-success mt-4">Buy</button>
+					<form method="post" action="{{route('penjualan.update', $penjualan->id)}}">
+						@csrf
+						@method('PUT')
+						<button type="submit" class="btn btn-success mt-4">Buy</button>
+					</form>
+			  @endif
 			</div>
 
 

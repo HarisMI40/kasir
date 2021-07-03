@@ -17,8 +17,10 @@ class PenjualanSeeder extends Seeder
     {
         $products = penjualan::create(
 		        [
+                    'id' => 1,
 		    		'total_qty' => 3,
-		    		'total_harga' => 40000
+		    		'total_harga' => 40000,
+                    'done' => 0
 				]
 		);
     }

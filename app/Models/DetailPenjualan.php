@@ -14,4 +14,4 @@ class DetailPenjualan extends Model
 	 function product(){
 	    return $this->belongsTo(product::class, 'id_product');
 	  }
-    }
+}

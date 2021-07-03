@@ -9,7 +9,13 @@ class penjualan extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['total_qty', 'total_harga'];
+    public function getIncrementing()
+    {
+        return false;
+    }
+
+    
+    protected $fillable = ['id', 'total_qty', 'total_harga', 'done'];
 
     function DetailPenjualan(){
     	return $this->hasMany(DetailPenjualan::class, 'id_penjualan');
