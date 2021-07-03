@@ -97,11 +97,12 @@ class detailPenjualanController extends Controller
                 'total_harga' => $penjualan->total_harga + (1 * $product->harga)
             ]);    
 
-
-            if($product->qty >= 0 ){
+            // dd($product->qty);
+            if($product->qty > 0 ){
                 $product->update(['qty' => $product->qty - 1]);
             }else{
                 echo "tidak bisa di ambil lagi";
+                die();
             }
             
         }
@@ -153,7 +154,11 @@ class detailPenjualanController extends Controller
      */
     public function destroy(DetailPenjualan $DetailPenjualan)
     {
-
+        // $product = product::find($DetailPenjualan->id_product);
+        // echo "qty produk = ". $product->qty."<br/>";
+        // echo "penjualan qty = ". $DetailPenjualan->qty."<br/>";
+        // echo $total = $product->qty + $DetailPenjualan->qty;
+        // die();
 
     	$penjualan = penjualan::find($DetailPenjualan->id_penjualan);
 
@@ -165,9 +170,11 @@ class detailPenjualanController extends Controller
 
 
         $product = product::find($DetailPenjualan->id_product);
-        $product->update(['qty' => $product->qty + $DetailPenjualan->qty]);
+        $total = $product->qty + $DetailPenjualan->qty;
+        $product->update(['qty' => $total]);
 
-        
+
+
         return redirect()->back();
     }
 }
