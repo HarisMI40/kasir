@@ -5,6 +5,7 @@
 <!-- 
 	<link rel="stylesheet" type="text/css" href="{{asset('css/home.css')}}"> -->
 	<link rel="stylesheet" type="text/css" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 </head>
 <body>
 	<div class="container mt-4">
@@ -12,34 +13,33 @@
 			<div class="col-md-8 border p-3">
 
 				<div class="row">
-					@foreach($products as $product)
-						<div class="col-md-4 mb-3">
-							<div class="card">
-							  <img src="..." class="card-img-top" alt="...">
-							  <div class="card-body">
-							    <h5 class="card-title">{{$product->nama_product}}</h5>
-							    <p class="card-text">
-							    	<table>
-							    		<tr>
-							    			<td>qty</td>
-							    			<td>: {{$product->qty}}</td>
-							    		</tr>
-							    		<tr>
-							    			<td>harga</td>
-							    			<td>: {{$product->harga}}</td>
-							    		</tr>
-							    	</table>
-							    </p>
-							    <form action="{{route('detailPenjualan.store', [$id, $product->id])}}" method="POST">
+					<table class="table table-bordered table-hover table-sm">
+						<thead>
+							<tr>
+								<th scope="col">#</th>
+								<th scope="col">Product</th>
+								<th scope="col">Qty</th>
+								<th scope="col">Harga</th>
+							</tr>
+						</thead>
+						<tbody>
+						<?php $i=1?>
+						@foreach($products as $product)
+							<tr>
+								<form data-id="{{$product->id}}" action="{{route('detailPenjualan.store', [$id, $product->id])}}" method="POST">
 							    	@csrf
 							    	@method('POST')
-
-							    	<input type="submit" class="btn btn-primary" value="add">
 								</form>
-							  </div>
-							</div>	
-						</div>
-					@endforeach
+								<td scope="row" data-id="{{$product->id}}">{{$i++}}</th>
+								<td data-id="{{$product->id}}">{{$product->nama_product}}</td>
+								<td data-id="{{$product->id}}">{{$product->qty}}</td>
+								<td data-id="{{$product->id}}">{{$product->harga}}</td>
+							</tr>
+						@endforeach
+						</tbody>
+					</table>
+					
+					
 						
 				</div>
 				
@@ -49,30 +49,6 @@
 			  @if($penjualan)
 				@foreach($penjualan->DetailPenjualan as $detail)
 					<div class="col-md-12 mb-3">
-						<!-- <div class="card">
-						  <img src="..." class="card-img-top" alt="...">
-						  <div class="card-body">
-						    <h5 class="card-title">{{$detail->product->nama_product}}</h5>
-						    <p class="card-text">
-						    	<table>
-						    		<tr>
-						    			<td>harga</td>
-						    			<td>: {{$detail->product->harga}}</td>
-						    		</tr>
-						    		<tr>
-						    			<td>qty</td>
-						    			<td>: {{$detail->qty}}</td>
-						    		</tr>
-						    		<tr>
-						    			<td>sub total</td>
-						    			<td>: {{$detail->product->harga * $detail->qty}}</td>
-						    		</tr>
-						    	</table>
-						    </p>
-						    <input type="number" class="form-control" name="">
-						  </div>
-						</div>	 -->
-
 						<table width="100%">
 				    		<tr>
 				    			<td width="40%">{{$detail->product->nama_product}}</td>
@@ -83,7 +59,8 @@
 				    				<form method="post" action="{{route('detailPenjualan.destroy', $detail->id)}}">
 					    				@csrf
 					    				@method('DELETE')
-					    				<button type="submit" class="btn btn-danger btn-sm">x</button>
+					    				<button type="submit" class="btn btn-danger btn-sm"
+										><i class="bi bi-trash" style="color:white"></i></button>
 					    			</form>	
 
 				    			</td>
@@ -115,5 +92,7 @@
 
 		</div>
 	</div>
+
+	<script src="{{asset('js/transaksi.js')}}"></script>
 </body>
 </html>
