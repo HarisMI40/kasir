@@ -14,6 +14,11 @@
         - Menggunakan Ajax atau livewire
         - Menggunakan react js  
 
+    - Buat fitur Kembalian
+        - buat satu input untuk input uang yang diberikan oleh pembeli
+        - total uang yang diberikan pembeli dikurangi total pembelian
+        - buat text uang menampilkan total kembalian
+
 ## Buat Tambah Produk
 
 ## Buat Laporan
