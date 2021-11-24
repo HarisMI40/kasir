@@ -9,6 +9,7 @@
 
     - Desain
         - Lihat desain di referensi yang lain biar tambah bagus
+        - tombol buy di buat supaya memanjang
 
     - Gunakan assynchoronous
         - Menggunakan Ajax atau livewire
