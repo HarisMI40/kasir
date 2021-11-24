@@ -38,78 +38,80 @@ class detailPenjualanController extends Controller
      */
     public function store(Request $request, $id, product $product)
     {
-        // dd('hiiiii');
-        $penjualan = penjualan::find($id);
-
-        if(!$penjualan){
-            /*
-                jika data penjualan belum ada,
-                yang artinya belum bertransaksi / ini melakukan transaksi baru
-
-            */
-            $penjualan = penjualan::create([
-                'id' => $id,
-                'total_qty' => 1,
-                'total_harga' => $product->harga * 1
-            ]);
-
-            $penjualan->DetailPenjualan()->create([
-                'id_product' => $product->id,
-                'qty' => 1,
-                'sub_total' => $product->harga * 1 
-            ]);
-
-        }else{
-
-            $detailPenjualan = DetailPenjualan::where(['id_product' => $product->id, 'id_penjualan' => $id])->first();
-            // dd($detailPenjualan);
-
-
-            if($detailPenjualan){
-
-                /*
-                    jika product sudah ada pada detail penjualan
-                    maka tinggal update saja
-
-                    jika tidak / belum ada pada detail penjualan
-                    maka buat data / row baru
-                */
-
-                $detailPenjualan->update([
-                    'qty' => $detailPenjualan->qty + 1,
-                    'sub_total' => $detailPenjualan->sub_total + ($product->harga * 1)
-                ]);
-
-
-            }else{
-
-                $penjualan->DetailPenjualan()->create([
-                    'id_product' => $product->id,
-                    'qty' => 1,
-                    'sub_total' => $product->harga * 1 
-                ]);
-
-            }
-
-            
-            $penjualan->update([
-                'total_qty' => $penjualan->total_qty + 1,
-                'total_harga' => $penjualan->total_harga + (1 * $product->harga)
-            ]);    
-
-            // dd($product->qty);
-            if($product->qty > 0 ){
-                $product->update(['qty' => $product->qty - 1]);
-            }else{
-                echo "tidak bisa di ambil lagi";
-                die();
-            }
-            
-        }
-
-        
-
+        $this->tambahProduct($id, $product);
         return redirect()->back();
+    }
+
+    private function tambahProduct($id, $product){
+        // echo "id : ". $id . "product : "."$product";
+         // dd('hiiiii');
+         $penjualan = penjualan::find($id);
+
+         if(!$penjualan){
+             /*
+                 jika data penjualan belum ada,
+                 yang artinya belum bertransaksi / ini melakukan transaksi baru
+ 
+             */
+             $penjualan = penjualan::create([
+                 'id' => $id,
+                 'total_qty' => 1,
+                 'total_harga' => $product->harga * 1
+             ]);
+ 
+             $penjualan->DetailPenjualan()->create([
+                 'id_product' => $product->id,
+                 'qty' => 1,
+                 'sub_total' => $product->harga * 1 
+             ]);
+ 
+         }else{
+ 
+             $detailPenjualan = DetailPenjualan::where(['id_product' => $product->id, 'id_penjualan' => $id])->first();
+             // dd($detailPenjualan);
+ 
+ 
+             if($detailPenjualan){
+ 
+                 /*
+                     jika product sudah ada pada detail penjualan
+                     maka tinggal update saja
+ 
+                     jika tidak / belum ada pada detail penjualan
+                     maka buat data / row baru
+                 */
+ 
+                 $detailPenjualan->update([
+                     'qty' => $detailPenjualan->qty + 1,
+                     'sub_total' => $detailPenjualan->sub_total + ($product->harga * 1)
+                 ]);
+ 
+ 
+             }else{
+ 
+                 $penjualan->DetailPenjualan()->create([
+                     'id_product' => $product->id,
+                     'qty' => 1,
+                     'sub_total' => $product->harga * 1 
+                 ]);
+ 
+             }
+ 
+             
+             $penjualan->update([
+                 'total_qty' => $penjualan->total_qty + 1,
+                 'total_harga' => $penjualan->total_harga + (1 * $product->harga)
+             ]);    
+ 
+             // dd($product->qty);
+             if($product->qty > 0 ){
+                 $product->update(['qty' => $product->qty - 1]);
+             }else{
+                 echo "tidak bisa di ambil lagi";
+                 die();
+             }
+             
+         }
     }
 
     /**
