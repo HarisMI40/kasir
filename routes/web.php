@@ -29,3 +29,5 @@ Route::put('penjualan/{penjualan:id}', [PenjualanController::class, 'update'])->
 Route::post('penjualan/add/{id}/{product}', [DetailPenjualanController::class, 'store'])->name('detailPenjualan.store');
 
 Route::delete('penjualan/{DetailPenjualan:id}', [DetailPenjualanController::class, 'destroy'])->name('detailPenjualan.destroy');
+
+Route::post('cariBarang/add/{penjualan:id}', [DetailPenjualanController::class, 'scanBarcode'])->name('scanBarcode.store');

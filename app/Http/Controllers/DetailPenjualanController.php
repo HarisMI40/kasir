@@ -42,6 +42,16 @@ class detailPenjualanController extends Controller
         return redirect()->back();
     }
 
+    public function scanBarcode(Request $request, $id)
+    {
+        // return $id. " ". $request->kodeBarcode ;
+        $product = product::find($request->kodeBarcode);
+        
+        $this->tambahProduct($id, $product);
+        return redirect()->back();
+    }
+
+
     private function tambahProduct($id, $product){
         // echo "id : ". $id . "product : "."$product";
          // dd('hiiiii');
@@ -113,6 +123,7 @@ class detailPenjualanController extends Controller
              
          }
     }
+
 
     /**
      * Display the specified resource.

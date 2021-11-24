@@ -10,9 +10,17 @@
 <body>
 	<div class="container mt-4">
 		<div class="row">
-			<div class="col-md-8 border p-3">
+			<div class="col-md-8 p-3" >
 
 				<div class="row">
+				    <form action="{{route('scanBarcode.store', [$id])}}" method="post" autocomplete="off">
+						@method("POST")
+						@CSRF
+						<div class="mb-3">
+							<label for="cariBarang" class="form-label">Scan Barcode / Cari Barang</label>
+							<input type="text" class="form-control" id="cariBarang" name="kodeBarcode" >
+						</div>
+					</form>
 					<table class="table table-bordered table-hover table-sm">
 						<thead>
 							<tr>
