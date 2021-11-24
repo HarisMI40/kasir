@@ -5,6 +5,10 @@ table.addEventListener('click', function(event){
     if (event.target.tagName === "TD"){
         let id = event.target.getAttribute("data-id");
         let form = document.querySelector(`form[data-id="${id}"]`);
-        form.submit();
+
+        let tambahkanProduk = confirm("Tambahkan Produk ? ");
+        if(tambahkanProduk){
+            form.submit();
+        }
     }
 });
