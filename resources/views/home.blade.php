@@ -6,11 +6,19 @@
 	<link rel="stylesheet" type="text/css" href="{{asset('css/home.css')}}"> -->
 	<link rel="stylesheet" type="text/css" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+
+	<style>
+		#konten {
+			overflow-y: auto;    /* Trigger vertical scroll    */
+    		overflow-x: hidden;  /* Hide the horizontal scroll */
+			height : 500px;
+		}
+	</style>
 </head>
 <body>
 	<div class="container mt-4">
 		<div class="row">
-			<div class="col-md-8 p-3" >
+			<div class="col-md-8 p-3" id="konten">
 
 				<div class="row">
 				    <form action="{{route('scanBarcode.store', [$id])}}" method="post" autocomplete="off">
