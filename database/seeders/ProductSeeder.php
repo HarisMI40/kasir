@@ -17,6 +17,7 @@ class ProductSeeder extends Seeder
     {
         $products = product::create(
 		        [
+					'kode_barang' => 'B001',
 		    		'nama_product' => 'rendang',
 		    		'qty' => 12,
 		    		'harga' => 10000,
@@ -25,6 +26,7 @@ class ProductSeeder extends Seeder
 
 		$products = product::create(
 		        [
+					'kode_barang' => 'B002',
 		    		'nama_product' => 'ayam bakar',
 		    		'qty' => 10,
 		    		'harga' => 20000,
