@@ -36,26 +36,27 @@ class detailPenjualanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id, product $product)
+    public function store(Request $request, $id, $kodeBarcode)
     {
-        $this->tambahProduct($id, $product);
+        $this->tambahProduct($id, $kodeBarcode);
         return redirect()->back();
     }
 
     public function scanBarcode(Request $request, $id)
     {
         // return $id. " ". $request->kodeBarcode ;
-        $product = product::find($request->kodeBarcode);
+        $product = product::where('kode_barang', $request->kodeBarcode)->first();
         
-        $this->tambahProduct($id, $product);
+        $this->tambahProduct($id, $product->kode_barang);
         return redirect()->back();
     }
 
 
-    private function tambahProduct($id, $product){
+    private function tambahProduct($id, $kodeBarcode){
         // echo "id : ". $id . "product : "."$product";
          // dd('hiiiii');
          $penjualan = penjualan::find($id);
+         $product = product::where('kode_barang', $kodeBarcode)->first();
 
          if(!$penjualan){
              /*
