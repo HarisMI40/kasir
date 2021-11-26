@@ -24,18 +24,18 @@ trait Uuids
      *
      * @return bool
      */
-    public function getIncrementing()
-    {
-        return false;
-    }
+    // public function getIncrementing()
+    // {
+    //     return false;
+    // }
 
    /**
      * Get the auto-incrementing key type.
      *
      * @return string
      */
-    public function getKeyType()
-    {
-        return 'string';
-    }
+    // public function getKeyType()
+    // {
+    //     return 'string';
+    // }
 }
