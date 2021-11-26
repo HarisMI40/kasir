@@ -1,6 +1,6 @@
 ## Di transaksi Penjualan
     - tambahkan kode barang / kode barcode di tabel produk
-        - tambahkan kolom baru kode_barang atau kode_barcode
+(sudah) - tambahkan kolom baru kode_barang atau kode_barcode 
         - untuk id tidak pakai auto increment, tapi misal diganti dengan uuid
 
     - Tambahkan fitur direct print thermal
