@@ -26,7 +26,7 @@ Route::get('penjualan', [PenjualanController::class, 'index']);
 
 Route::put('penjualan/{penjualan:id}', [PenjualanController::class, 'update'])->name('penjualan.update');
 
-Route::post('penjualan/add/{id}/{product}', [DetailPenjualanController::class, 'store'])->name('detailPenjualan.store');
+Route::post('penjualan/add/{id}/{kodeBarcode}', [DetailPenjualanController::class, 'store'])->name('detailPenjualan.store');
 
 Route::delete('penjualan/{DetailPenjualan:id}', [DetailPenjualanController::class, 'destroy'])->name('detailPenjualan.destroy');
 

@@ -16,12 +16,21 @@ class PenjualanController extends Controller
     public function index()
     {
         $penjualan_terakhir = penjualan::get()->last();
-
-        $id = $penjualan_terakhir->id;
-
-        if($penjualan_terakhir->done){
-            $id = $penjualan_terakhir->id + 1;
+        
+        if(!$penjualan_terakhir){ //jika tidak ada data
+            $id = "1";
+        }else{
+            $id = $penjualan_terakhir->id;
+            
+            if($penjualan_terakhir->done){
+                $id = $penjualan_terakhir->id + 1;
+            }
         }
+
+        // return $id;
+        
+
+        
 
 
         $penjualan = penjualan::with('DetailPenjualan', 'DetailPenjualan.product')->where('id', $id)->first();

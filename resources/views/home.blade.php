@@ -28,14 +28,14 @@
 						<?php $i=1?>
 						@foreach($products as $product)
 							<tr>
-								<form data-id="{{$product->id}}" action="{{route('detailPenjualan.store', [$id, $product->id])}}" method="POST">
+								<form data-id="{{$product->kode_barang}}" action="{{route('detailPenjualan.store', [$id, $product->kode_barang])}}" method="POST">
 							    	@csrf
 							    	@method('POST')
 								</form>
 								<td scope="row" data-id="{{$product->id}}">{{$i++}}</th>
-								<td data-id="{{$product->id}}">{{$product->nama_product}}</td>
-								<td data-id="{{$product->id}}">{{$product->qty}}</td>
-								<td data-id="{{$product->id}}">{{$product->harga}}</td>
+								<td data-id="{{$product->kode_barang}}">{{$product->nama_product}}</td>
+								<td data-id="{{$product->kode_barang}}">{{$product->qty}}</td>
+								<td data-id="{{$product->kode_barang}}">{{$product->harga}}</td>
 							</tr>
 						@endforeach
 						</tbody>
