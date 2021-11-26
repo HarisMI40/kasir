@@ -22,7 +22,7 @@ Route::get('/', function () {
     return $detail;									
 });
 
-Route::get('penjualan', [PenjualanController::class, 'index']);
+Route::get('penjualan', [PenjualanController::class, 'index'])->name('penjualan');
 
 Route::put('penjualan/{penjualan:id}', [PenjualanController::class, 'update'])->name('penjualan.update');
 

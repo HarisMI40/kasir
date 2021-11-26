@@ -23,7 +23,7 @@
 </head>
     <body>
 	<nav class="navbar navbar-dark bg-primary navbar-expand-*" style="background-color: #e3f2fd">
-		<div class="container-fluid">
+		<div class="container">
 			<a class="navbar-brand" href="#">Kasirku</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
 			<span class="navbar-toggler-icon"></span>
@@ -39,9 +39,15 @@
 						<a class="nav-link active" aria-current="page" href="#">Home</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">Link</a>
+						<a class="nav-link" href="#">Data Produk</a>
 					</li>
-					<li class="nav-item dropdown">
+					<li class="nav-item">
+						<a class="nav-link" href="{{ route('penjualan') }}">Transaksi</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Laporan</a>
+					</li>
+					<!-- <li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 						Dropdown
 						</a>
@@ -53,12 +59,12 @@
 							</li>
 							<li><a class="dropdown-item" href="#">Something else here</a></li>
 						</ul>
-					</li>
+					</li> -->
 				</ul>
-				<form class="d-flex">
+				<!-- <form class="d-flex">
 					<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
 					<button class="btn btn-outline-success" type="submit">Search</button>
-				</form>
+				</form> -->
 			</div>
 			</div>
 		</div>
