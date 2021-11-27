@@ -72,12 +72,16 @@
 						<td data-id="{{$product->kode_barang}}">{{$product->qty}}</td>
 						<td data-id="{{$product->kode_barang}}">{{$product->harga}}</td>
 						<td data-id="{{$product->kode_barang}}">{{$product->created_at->format('d M Y')}}</td>
-						<td>
-							<form action="{{route('produk.delete', $product->id)}}" method="post">
+						<td class="d-flex justify-content-rigth">
+							<form class="me-3" action="{{route('produk.delete', $product->id)}}" method="post">
 								@method("DELETE")
 								@csrf
 								<button class="btn btn-danger btn-sm" onClick="confirm('Apakah anda yakin ingin menghapus produk ?')">Hapus</button>
 							</form>
+
+						<a class="btn btn-success btn-sm" href="{{route('produk.edit', $product)}}" role="button">
+							Edit
+						</a>
 					</td>
 					</tr>
 				@endforeach
