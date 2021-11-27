@@ -15,7 +15,7 @@ class penjualan extends Model
     }
 
     
-    protected $fillable = ['id', 'total_qty', 'total_harga', 'done'];
+    protected $fillable = ['id', 'total_qty', 'total_harga', 'done','tanggal'];
 
     function DetailPenjualan(){
     	return $this->hasMany(DetailPenjualan::class, 'id_penjualan');

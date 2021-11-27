@@ -55,6 +55,7 @@ class detailPenjualanController extends Controller
     private function tambahProduct($id, $kodeBarcode){
         // echo "id : ". $id . "product : "."$product";
          // dd('hiiiii');
+        //  return date('dd-mm-yy');
          $penjualan = penjualan::find($id);
          $product = product::where('kode_barang', $kodeBarcode)->first();
 
@@ -67,7 +68,8 @@ class detailPenjualanController extends Controller
              $penjualan = penjualan::create([
                  'id' => $id,
                  'total_qty' => 1,
-                 'total_harga' => $product->harga * 1
+                 'total_harga' => $product->harga * 1,
+                 'tanggal' => now()
              ]);
  
              $penjualan->DetailPenjualan()->create([
@@ -76,13 +78,13 @@ class detailPenjualanController extends Controller
                  'sub_total' => $product->harga * 1 
              ]);
  
-         }else{
+         }else{ // jika sudah data penjualan ( tinggal memasukan data detail penjualan )
  
              $detailPenjualan = DetailPenjualan::where(['id_product' => $product->id, 'id_penjualan' => $id])->first();
              // dd($detailPenjualan);
  
  
-             if($detailPenjualan){
+             if($detailPenjualan){ // apakah data produk sudah ada pada detail penjualan
  
                  /*
                      jika product sudah ada pada detail penjualan
@@ -99,7 +101,8 @@ class detailPenjualanController extends Controller
  
  
              }else{
- 
+                
+                // tambah data pada detail penjualan
                  $penjualan->DetailPenjualan()->create([
                      'id_product' => $product->id,
                      'qty' => 1,
@@ -108,11 +111,12 @@ class detailPenjualanController extends Controller
  
              }
  
-             
-             $penjualan->update([
-                 'total_qty' => $penjualan->total_qty + 1,
-                 'total_harga' => $penjualan->total_harga + (1 * $product->harga)
-             ]);    
+                // update total qty dan total harga pada tabel penjualan
+                $penjualan->update([
+                    'total_qty' => $penjualan->total_qty + 1,
+                    'total_harga' => $penjualan->total_harga + (1 * $product->harga)
+                ]);   
+            } 
  
              // dd($product->qty);
              if($product->qty > 0 ){
@@ -121,8 +125,6 @@ class detailPenjualanController extends Controller
                  echo "tidak bisa di ambil lagi";
                  die();
              }
-             
-         }
     }
 
 

@@ -35,7 +35,7 @@ class PenjualanController extends Controller
 
         $penjualan = penjualan::with('DetailPenjualan', 'DetailPenjualan.product')->where('id', $id)->first();
 
-        // dd($id);
+         // dd($id);
 
         $products = product::all();
 
