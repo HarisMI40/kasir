@@ -15,7 +15,7 @@ class CreateDetailPenjualansTable extends Migration
     {
         Schema::create('detail_penjualans', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_product');
+            $table->char('id_product', 36);
             $table->integer('id_penjualan');
             $table->integer('qty');
             $table->integer('sub_total');
