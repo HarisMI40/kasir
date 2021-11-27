@@ -34,8 +34,8 @@ trait Uuids
      *
      * @return string
      */
-    // public function getKeyType()
-    // {
-    //     return 'string';
-    // }
+    public function getKeyType()
+    {
+        return 'string';
+    }
 }
