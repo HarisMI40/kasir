@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\DetailPenjualanController;
-use App\Http\Controllers\Produk\ProdukController;
+use App\Http\Controllers\produk\ProdukController;
+use App\Http\Controllers\laporan\LaporanController;
 use App\Models\penjualan;
 use App\Models\product;
 
@@ -41,3 +42,7 @@ Route::delete('produk/{product}', [ProdukController::class, 'destroy'])->name('p
 Route::post('produk', [ProdukController::class, 'create'])->name('produk.create');
 Route::get('produk/{product}', [ProdukController::class, 'edit'])->name('produk.edit');
 Route::put('produk/{product}', [ProdukController::class, 'update'])->name('produk.update');
+
+
+//  ====== Data Laporan ========
+Route::get('laporan', [LaporanController::class, 'index'])->name('laporan');
