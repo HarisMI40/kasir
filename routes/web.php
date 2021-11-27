@@ -39,3 +39,5 @@ Route::post('cariBarang/add/{penjualan:id}', [DetailPenjualanController::class, 
 Route::get('produk', [ProdukController::class, 'index'])->name('produk');
 Route::delete('produk/{product}', [ProdukController::class, 'destroy'])->name('produk.delete');
 Route::post('produk', [ProdukController::class, 'create'])->name('produk.create');
+Route::get('produk/{product}', [ProdukController::class, 'edit'])->name('produk.edit');
+Route::put('produk/{product}', [ProdukController::class, 'update'])->name('produk.update');

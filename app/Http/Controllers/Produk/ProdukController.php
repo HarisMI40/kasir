@@ -16,7 +16,7 @@ class ProdukController extends Controller
     public function index()
     {
         $products = product::all();
-        return view('data_produk', compact('products'));
+        return view('produk.data_produk', compact('products'));
     }
 
     /**
@@ -66,9 +66,9 @@ class ProdukController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Product $product)
     {
-        //
+       return view('produk.produk_edit', compact('product'));
     }
 
     /**
@@ -78,9 +78,18 @@ class ProdukController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Product $product)
     {
-        //
+        $product->update([
+            'kode_barang' => $request->kode_product,
+            'nama_product' => $request->nama_product,
+            'qty' => $request->qty,
+            'harga' => $request->harga
+        ]);
+
+        if($product){
+            return redirect(route('produk'));
+        }
     }
 
     /**
