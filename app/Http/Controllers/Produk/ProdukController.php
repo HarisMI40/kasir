@@ -24,9 +24,18 @@ class ProdukController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $product = product::create([
+            'kode_barang' => $request->kode_product,
+            'nama_product' => $request->nama_product,
+            'qty' => $request->qty,
+            'harga' => $request->harga
+        ]);
+
+        if($product){
+            return redirect()->back();
+        }
     }
 
     /**
