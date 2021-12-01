@@ -2,27 +2,30 @@
 
 namespace Database\Factories;
 
-use App\Models\penjualan;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\penjualan;
 
-class PenjualanFactory extends Factory
+class penjualanFactory extends Factory
 {
-    /**
-     * The name of the factory's corresponding model.
-     *
-     * @var string
-     */
-    protected $model = penjualan::class;
-
     /**
      * Define the model's default state.
      *
      * @return array
      */
+
+    protected $model = penjualan::class;
+
     public function definition()
     {
+        $tgl =  $this->faker->numberBetween($min = 1, $max = 30);
+        $bln =  $this->faker->numberBetween($min = 1, $max = 12);
+        $thn =  $this->faker->numberBetween($min = 2021, $max = 2022); 
         return [
-            //
+            'id' => $this->faker->numberBetween($min = 1, $max = 100),
+            'total_qty' => $this->faker->numberBetween($min = 1, $max = 1000),
+            'total_harga' => $this->faker->numberBetween($min = 1000, $max = 100000),
+            'done' => 0,
+            'tanggal' => $thn."-". $bln."-". $tgl
         ];
     }
 }

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\penjualan;
+use App\Models\DetailPenjualan;
 
 
 class PenjualanSeeder extends Seeder
@@ -15,14 +16,9 @@ class PenjualanSeeder extends Seeder
      */
     public function run()
     {
-        $products = penjualan::create(
-		        [
-                    'id' => 1,
-		    		'total_qty' => 3,
-		    		'total_harga' => 40000,
-                    'done' => 0
-				]
-		);
+        penjualan::factory()
+            ->has(DetailPenjualan::factory()->count(3), 'DetailPenjualan')
+            ->create();
     }
 
 }
