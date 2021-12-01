@@ -25,7 +25,7 @@ class penjualanFactory extends Factory
             'total_qty' => $this->faker->numberBetween($min = 1, $max = 1000),
             'total_harga' => $this->faker->numberBetween($min = 1000, $max = 100000),
             'done' => 0,
-            'tanggal' => $thn."-". $bln."-". $tgl
+            'created_at' => $thn."-". $bln."-". $tgl
         ];
     }
 }

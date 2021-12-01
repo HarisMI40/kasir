@@ -68,8 +68,7 @@ class detailPenjualanController extends Controller
              $penjualan = penjualan::create([
                  'id' => $id,
                  'total_qty' => 1,
-                 'total_harga' => $product->harga * 1,
-                 'tanggal' => now()
+                 'total_harga' => $product->harga * 1
              ]);
  
              $penjualan->DetailPenjualan()->create([
