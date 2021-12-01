@@ -16,7 +16,7 @@ class PenjualanController extends Controller
     public function index()
     {
         $penjualan_terakhir = penjualan::get()->last();
-        
+        // return $penjualan_terakhir;
         if(!$penjualan_terakhir){ //jika tidak ada data
             $id = "1";
         }else{
@@ -26,23 +26,11 @@ class PenjualanController extends Controller
                 $id = $penjualan_terakhir->id + 1;
             }
         }
-
-        // return $id;
-        
-
-        
-
-
         $penjualan = penjualan::with('DetailPenjualan', 'DetailPenjualan.product')->where('id', $id)->first();
 
-         // dd($id);
 
         $products = product::all();
-
-        // if($id == null){
-            
-        // }
-        
+        // return $penjualan->DetailPenjualan;
 
         return view('home', compact('products','penjualan', 'id'));
     }
