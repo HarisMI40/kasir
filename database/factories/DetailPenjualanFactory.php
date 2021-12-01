@@ -22,5 +22,7 @@ class DetailPenjualanFactory extends Factory
             'qty' =>10,
             'sub_total' => 10000
         ];
+
+        
     }
 }

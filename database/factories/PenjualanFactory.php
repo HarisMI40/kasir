@@ -22,8 +22,8 @@ class penjualanFactory extends Factory
         $thn =  $this->faker->numberBetween($min = 2021, $max = 2022); 
         return [
             'id' => $this->faker->numberBetween($min = 1, $max = 100),
-            'total_qty' => $this->faker->numberBetween($min = 1, $max = 1000),
-            'total_harga' => $this->faker->numberBetween($min = 1000, $max = 100000),
+            'total_qty' => $this->faker->numberBetween($min = 1, $max = 10),
+            'total_harga' => $this->faker->numberBetween($min = 1000, $max = 10000),
             'done' => 0,
             'created_at' => $thn."-". $bln."-". $tgl
         ];

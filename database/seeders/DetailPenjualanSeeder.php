@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\DetailPenjualan;
+use App\Models\product;
 use illuminate\Support\Str;
 
 class DetailPenjualanSeeder extends Seeder
@@ -34,6 +35,11 @@ class DetailPenjualanSeeder extends Seeder
 		// 		]
 		// );
 
-		DetailPenjualan::factory()->count(20)->create();
+		// DetailPenjualan::factory()->count(20)->create();
+
+		DetailPenjualan::factory()
+		->for(product::factory()->state(['id' => '2',]))
+		->count(2)
+		->create();
     }
 }
