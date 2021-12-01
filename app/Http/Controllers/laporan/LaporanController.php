@@ -22,12 +22,13 @@ class LaporanController extends Controller
         //         ->get();
 
         $products = DB::table('penjualans')
-        ->selectRaw('sum(total_qty)')
-        ->selectRaw('DATE_FORMAT(created_at, "%M") as tanggal_data')
+        ->selectRaw('sum(total_qty) as total_qty')
+        ->selectRaw('sum(total_harga) as total_pendapatan')
+        ->selectRaw('DATE_FORMAT(created_at, "%Y - %M") as tanggal_data')
         ->groupBy('tanggal_data')
         ->get();
 
-        return $products;
+        // return $products;
         return view('laporan.data_laporan', compact('products'));
     }
 }
