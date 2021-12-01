@@ -16,30 +16,22 @@ class DetailPenjualanSeeder extends Seeder
      */
     public function run()
     {
-    	// $uuid = Str::uuid();
-        // $products = DetailPenjualan::create(
-		//         [
-		//     		'id_product' => 1,
-		//     		'id_penjualan' => 1,
-		//     		'qty' => 2,
-		//     		'sub_total' => 20000,
-		// 		]
-		// );
+    	DetailPenjualan::create(
+			[
+				'id_product' => "B001",
+				'id_penjualan' => 1,
+				'qty' => 5,
+				'sub_total' => 10000
+			]
+		);
 
-		// $products = DetailPenjualan::create(
-		//         [
-		//     		'id_product' => 2,
-		//     		'id_penjualan' => 1,
-		//     		'qty' => 1,
-		//     		'sub_total' => 20000,
-		// 		]
-		// );
-
-		// DetailPenjualan::factory()->count(20)->create();
-
-		DetailPenjualan::factory()
-		->for(product::factory()->state(['id' => '2',]))
-		->count(2)
-		->create();
+		DetailPenjualan::create(
+			[
+				'id_product' => "B002",
+				'id_penjualan' => 2,
+				'qty' => 5,
+				'sub_total' => 15000
+			]
+		);
     }
 }

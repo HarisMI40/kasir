@@ -16,19 +16,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-
-        $product = product::factory()->create();
-        
-        penjualan::factory()
-            ->has( DetailPenjualan::factory()->count(2), 'DetailPenjualan' ) 
-            ->create();
-
         $this->call([
-            // ProductSeeder::class,
-            // PenjualanSeeder::class,
-            // DetailPenjualanSeeder::class
-            // DetailPenjualan::factory()->count(20)->create()
-            // UserSeeder::class
+            ProductSeeder::class,
+            PenjualanSeeder::class,
+            DetailPenjualanSeeder::class
         ]);
     }
 }

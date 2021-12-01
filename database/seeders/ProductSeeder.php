@@ -15,37 +15,46 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        // $products = product::create(
-		//         [
-		// 			'kode_barang' => 'B001',
-		//     		'nama_product' => 'rendang',
-		//     		'qty' => 12,
-		//     		'harga' => 10000,
-		// 		]
-		// );
-
-		// $products = product::create(
-		//         [
-		// 			'kode_barang' => 'B002',
-		//     		'nama_product' => 'ayam bakar',
-		//     		'qty' => 10,
-		//     		'harga' => 20000,
-		// 		]
-		// );
-
 		product::create(
             [
-                'kode_barang' => 'B002',
-                'nama_product' => 'teh gelas',
+                'kode_barang' => 'B001',
+                'nama_product' => 'Richees Nabati',
                 'qty' => 10,
-                'harga' => 1000,
+                'harga' => 2000,
 			]);
 
+		product::create(
+			[
+				'kode_barang' => 'B002',
+				'nama_product' => 'Indomie Goreng',
+				'qty' => 10,
+				'harga' => 3000,
+			]);
 
-		product::factory()->count(10)->create();
+		product::create(
+			[
+				'kode_barang' => 'B003',
+				'nama_product' => 'Mie Sedap Goreng',
+				'qty' => 10,
+				'harga' => 3000,
+			]);
 
-		 // $table->string('nama_product');
-   //          $table->integer('qty');
-   //          $table->integer('harga');
+		product::create(
+			[
+				'kode_barang' => 'B004',
+				'nama_product' => 'Sabun Nuvo Merah',
+				'qty' => 10,
+				'harga' => 4000,
+			]);
+
+		product::create(
+			[
+				'kode_barang' => 'B005',
+				'nama_product' => 'Sabun Nuvo Kuning',
+				'qty' => 10,
+				'harga' => 4000,
+			]);
+
+		// product::factory()->count(10)->create();
     }
 }

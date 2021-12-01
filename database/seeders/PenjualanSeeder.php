@@ -22,31 +22,24 @@ class PenjualanSeeder extends Seeder
             'DetailPenjualan mengambil dari method di model penjualan, DetailPenjualan()'
         */
 
-        // penjualan::factory()
-        // ->has(
-            
-        //     DetailPenjualan::factory()->count(2), 'DetailPenjualan'
-            
-        //     ) 
-        // ->count(2)
-        // ->create();
-
-        $product = product::factory()->create();
-        penjualan::factory()
-            ->has(
-                DetailPenjualan::factory()
-                ->count(2)
-                ->for($product), 'DetailPenjualan'
-                ) 
-            ->create();
-
-             // penjualan::factory()
-        // ->has(
-        //     DetailPenjualan::factory()
-        //     ->for(product::factory()->state(['id' => '2',]))    
-        //     ->create(), 'DetailPenjualan') 
-        // ->count(2)
-        // ->create();
+        penjualan::create(
+            [
+                'id' => 1,
+                'total_qty' => 5,
+                'total_harga' => 10000,
+                'done' => 1,
+                'created_at' => "2021-12-1"
+            ]
+        );
+        penjualan::create(
+            [
+                'id' => 2,
+                'total_qty' => 5,
+                'total_harga' => 15000,
+                'done' => 1,
+                'created_at' => "2021-11-1"
+            ]
+        );
     }
 
 }
