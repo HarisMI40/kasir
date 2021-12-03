@@ -7,7 +7,7 @@
         - tambahkan program direct ke print thermal setelah transaksi sukses
         - bisa juga print via handphone
 
-    - Desain
+    - improve Desain
         - Lihat desain di referensi yang lain biar tambah bagus
         - tombol buy di buat supaya memanjang
 
@@ -21,6 +21,10 @@
         - buat text uang menampilkan total kembalian
 
 ## Buat Tambah Produk
+    - buat halaman crud produk dasar ( sudah )
+    - improve desain
 
 ## Buat Laporan
+    - keamanan
+        - amankan dari sql injection khususnya di laporanController yang menggunakan selectRaw ( raw query yang rentan sql injection) 
     
