@@ -15,7 +15,7 @@ class ProdukController extends Controller
      */
     public function index()
     {
-        $products = product::all();
+        $products = product::orderBy('created_at')->get();
         return view('produk.data_produk', compact('products'));
     }
 
