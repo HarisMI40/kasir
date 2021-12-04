@@ -12,8 +12,8 @@ Route::get('/home', function () {
 	// $detail = penjualan::with('DetailPenjualan', 'DetailPenjualan.product')->where('id', 1)->first();
     // return $detail;	
     
-    return redirect()->route('penjualan');
-});
+   return view('home.home');
+})->name('home');
 
 Route::get('/', function () { return redirect()->route('login'); });
 

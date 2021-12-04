@@ -6,7 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="{{asset('css/home.css')}}"> -->
 	<link rel="stylesheet" type="text/css" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
-
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 	<style>
 		#konten {
 			overflow-y: auto;    /* Trigger vertical scroll    */
@@ -36,7 +36,7 @@
 			<div class="offcanvas-body navbar-dark bg-primary" >
 				<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
 					<li class="nav-item">
-						<a class="nav-link active" aria-current="page" href="#">Home</a>
+						<a class="nav-link active" aria-current="page" href="{{route('home')}}">Home</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="{{route('produk')}}">Data Produk</a>
