@@ -24,13 +24,16 @@
     <body>
 	<nav class="navbar navbar-dark bg-primary navbar-expand-*" style="background-color: #e3f2fd">
 		<div class="container">
-			<a class="navbar-brand" href="#">Kasirku</a>
+			<a class="navbar-brand" href="#"><i class="bi bi-cart2"> </i> Kasirku</a>
+
+
+		@auth
 			<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
 			<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
 			<div class="offcanvas-header navbar-dark bg-primary">
-				<h5 class="offcanvas-title" id="offcanvasNavbarLabel">Kasirku</h5>
+				<h5 class="offcanvas-title text-white" id="offcanvasNavbarLabel"> <i class="bi bi-cart2"> </i> Kasirku</h5>
 				<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 			</div>
 			<div class="offcanvas-body navbar-dark bg-primary" >
@@ -77,6 +80,7 @@
 				</form> -->
 			</div>
 			</div>
+		@endauth
 		</div>
 </nav>
         <div class="container mt-4">
