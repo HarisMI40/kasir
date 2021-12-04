@@ -32,7 +32,7 @@ class PenjualanController extends Controller
         $products = product::all();
         // return $penjualan->DetailPenjualan;
 
-        return view('home', compact('products','penjualan', 'id'));
+        return view('penjualan.penjualan', compact('products','penjualan', 'id'));
     }
 
     /**
