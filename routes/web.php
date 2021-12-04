@@ -46,5 +46,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('laporan', [LaporanController::class, 'index'])->name('laporan');
 });
 Auth::routes();
+route::get('register', function(){
+    return abort(404);
+});
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
