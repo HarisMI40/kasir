@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\DetailPenjualanController;
-use App\Http\Controllers\produk\ProdukController;
+use App\Http\Controllers\Produk\ProdukController;
 use App\Http\Controllers\laporan\LaporanController;
 use App\Models\penjualan;
 use App\Models\product;
