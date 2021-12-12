@@ -19,7 +19,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             ProductSeeder::class,
             PenjualanSeeder::class,
-            DetailPenjualanSeeder::class
+            DetailPenjualanSeeder::class,
+            UserSeeder::class
         ]);
     }
 }
