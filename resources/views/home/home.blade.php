@@ -4,6 +4,12 @@
 <style>
     .card:hover{
         cursor: pointer;
+        transform:scale(1.08);
+        transition: 0.5s;
+    }
+
+    .card:active{
+        transform:scale(1.05);
     }
 </style>
     <div class="container">

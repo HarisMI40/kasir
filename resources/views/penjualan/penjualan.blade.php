@@ -15,7 +15,7 @@
 							<input type="text" class="form-control" id="cariBarang" name="kodeBarcode" >
 						</div>
 					</form>
-					<table class="table table-bordered table-hover table-sm">
+					<table class="table table-bordered table-hover table-sm table-striped">
 						<thead>
 							<tr>
 								<th scope="col">#</th>
@@ -47,7 +47,7 @@
 				
 			</div>
 
-			<div class="col-md-4 border p-3">
+			<div class="col-md-4 border p-3 shadow">
 			  @if($penjualan)
 				@foreach($penjualan->DetailPenjualan as $detail)
 					<div class="col-md-12 mb-3">
@@ -85,7 +85,9 @@
 					<form method="post" action="{{route('penjualan.update', $penjualan->id)}}">
 						@csrf
 						@method('PUT')
-						<button type="submit" class="btn btn-success mt-4">Buy</button>
+						<div class="d-grid gap-2">
+							<button type="submit" class="btn btn-success mt-4">Buy</button>
+						</div>
 					</form>
 			  @endif
 			</div>
