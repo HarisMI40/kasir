@@ -8,6 +8,13 @@
     - Tambahkan fitur direct print thermal
         - tambahkan program direct ke print thermal setelah transaksi sukses
         - bisa juga print via handphone
+        
+           cara untuk print :
+                1. menggunakan bawaan ( window.print )
+                2. menggunakan yang digithub walau tidak ada printer ini, tapi dicoba saja
+                3. coba yang parzebite di laptop
+                4. coba pakai qztray
+                5. coba pakai parzebite menggunakan pc lab
 
     - improve Desain
         - Lihat desain di referensi yang lain biar tambah bagus
