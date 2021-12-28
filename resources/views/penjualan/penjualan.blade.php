@@ -82,13 +82,14 @@
 						</tr>
 					</table>
 					<p>---------------------------------------</p>
-					<form method="post" action="{{route('penjualan.update', $penjualan->id)}}">
-						@csrf
-						@method('PUT')
+					{{-- <form method="post" action="{{route('penjualan.update', $penjualan->id)}}"> --}}
+						{{-- @csrf --}}
+						{{-- @method('PUT') --}}
+						<input type="hidden" name="id_penjualan" id="id_penjualan" value="{{$penjualan->id}}">
 						<div class="d-grid gap-2">
-							<button type="submit" class="btn btn-success mt-4">Buy</button>
+							<button type="submit" class="btn btn-success mt-4" id="buy">Buy</button>
 						</div>
-					</form>
+					{{-- </form> --}}
 			  @endif
 			</div>
 
@@ -99,7 +100,9 @@
 	@endsection
 	
 	@section('script')
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 		<script src="{{asset('js/penjualan/transaksi.js')}}"></script>
+		<script src="{{asset('js/penjualan/buy.js')}}"></script>
 		<script src="{{asset('js/penjualan/impresora.js')}}"></script>
 		<script src="{{asset('js/penjualan/script.js')}}"></script>
 	@endsection

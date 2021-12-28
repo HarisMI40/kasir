@@ -21,7 +21,7 @@ Route::get('/', function () { return redirect()->route('login'); });
 Route::middleware(['auth'])->group(function () {
     Route::get('penjualan', [PenjualanController::class, 'index'])->name('penjualan');
 
-    Route::put('penjualan/{penjualan:id}', [PenjualanController::class, 'update'])->name('penjualan.update');
+    Route::put('penjualan/{id}', [PenjualanController::class, 'update'])->name('penjualan.update');
 
     Route::post('penjualan/add/{id}/{kodeBarcode}', [DetailPenjualanController::class, 'store'])->name('detailPenjualan.store');
 

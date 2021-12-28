@@ -96,10 +96,16 @@ class PenjualanController extends Controller
      * @param  \App\Models\penjualan  $penjualan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, penjualan $penjualan)
+    public function update(Request $request, $id_penjualan)
     {
-         $penjualan->update(['done' => 1]);
-         return redirect()->back();    }
+        $penjualan = Penjualan::find($id_penjualan);
+         $data = $penjualan->update(['done' => 1]);
+        //  return redirect()->back();
+        // return Response::json("berhasilll");
+        return response()->json([
+            'success' => true
+        ], 200);
+    }
 
     /**
      * Remove the specified resource from storage.
