@@ -47,11 +47,11 @@
 				
 			</div>
 
-			<div class="col-md-4 border p-3 shadow">
+			<div class="col-md-4 border p-3 shadow" id="nota">
 			  @if($penjualan)
 				@foreach($penjualan->DetailPenjualan as $detail)
 					<div class="col-md-12 mb-3">
-						<table width="100%">
+						<table width="100%" id="table_nota">
 				    		<tr>
 				    			<td width="40%">{{$detail->product->nama_product}}</td>
 				    			<td width="10%">{{$detail->qty}}</td>
@@ -71,7 +71,7 @@
 					</div>
 				@endforeach
 					<p>---------------------------------------</p>
-					<table width="50%">
+					<table width="50%" id="table_total">
 						<tr>
 							<td><strong>qty</strong></td>
 							<td>: {{$penjualan->total_qty}}</td>
@@ -82,9 +82,9 @@
 						</tr>
 					</table>
 					<p>---------------------------------------</p>
-					{{-- <form method="post" action="{{route('penjualan.update', $penjualan->id)}}"> --}}
-						{{-- @csrf --}}
-						{{-- @method('PUT') --}}
+					{{-- <form method="post" action="{{route('penjualan.update', $penjualan->id)}}">
+						@csrf
+						 @method('PUT') --}}
 						<input type="hidden" name="id_penjualan" id="id_penjualan" value="{{$penjualan->id}}">
 						<div class="d-grid gap-2">
 							<button type="submit" class="btn btn-success mt-4" id="buy">Buy</button>

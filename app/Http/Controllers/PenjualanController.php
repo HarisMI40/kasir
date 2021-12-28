@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\penjualan;
 use App\Models\product;
+use App\Models\DetailPenjualan;
 use Illuminate\Http\Request;
 
 class PenjualanController extends Controller
@@ -100,10 +101,15 @@ class PenjualanController extends Controller
     {
         $penjualan = Penjualan::find($id_penjualan);
          $data = $penjualan->update(['done' => 1]);
+
+        //  $data_product_yang_dibeli = DetailPenjualan::where("id_penjualan", $id_penjualan)->get();
+         $data_product_yang_dibeli = penjualan::with('DetailPenjualan', 'DetailPenjualan.product')->where('id', $id_penjualan)->first();
+        //  return $data_product_yang_dibeli;
         //  return redirect()->back();
         // return Response::json("berhasilll");
         return response()->json([
-            'success' => true
+            'success' => true,
+            'data_product' => $data_product_yang_dibeli,
         ], 200);
     }
 
