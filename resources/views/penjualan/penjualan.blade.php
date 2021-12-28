@@ -99,5 +99,7 @@
 	@endsection
 	
 	@section('script')
-		<script src="{{asset('js/transaksi.js')}}"></script>
+		<script src="{{asset('js/penjualan/transaksi.js')}}"></script>
+		<script src="{{asset('js/penjualan/impresora.js')}}"></script>
+		<script src="{{asset('js/penjualan/script.js')}}"></script>
 	@endsection
