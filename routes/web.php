@@ -8,14 +8,9 @@ use App\Http\Controllers\laporan\LaporanController;
 use App\Models\penjualan;
 use App\Models\product;
 
-Route::get('/home', function () {
-	// $detail = penjualan::with('DetailPenjualan', 'DetailPenjualan.product')->where('id', 1)->first();
-    // return $detail;	
-    
-   return view('home.home');
-})->name('home');
-
-Route::get('/', function () { return redirect()->route('login'); });
+Route::get('/', function () {    
+    return view('home.home');
+ })->name('home')->middleware('auth');
 
 //  ====== Penjualan ========
 Route::middleware(['auth'])->group(function () {
