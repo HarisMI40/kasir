@@ -8,7 +8,10 @@ use App\Http\Controllers\laporan\LaporanController;
 use App\Models\penjualan;
 use App\Models\product;
 
-Route::get('/', function () {    
+Route::get('/', function () {
+    // system(start );  
+    //  $app = base_path()."/aplikasi/plugin_impresora_termica_64_bits"; 
+    // system("start $app"); 
     return view('home.home');
  })->name('home')->middleware('auth');
 
