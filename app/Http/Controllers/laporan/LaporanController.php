@@ -16,6 +16,7 @@ class LaporanController extends Controller
         ->selectRaw('sum(total_harga) as total_pendapatan')
         ->selectRaw('DATE_FORMAT(created_at, "%Y - %M") as tanggal_data')
         ->groupBy('tanggal_data')
+        ->where('done', '=', 1)
         ->get();
 
         return view('laporan.data_laporan', compact('products'));
