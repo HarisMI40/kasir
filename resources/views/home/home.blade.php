@@ -44,6 +44,20 @@
                 </div>
             </div>
         </div>
+
+        <div class="card text-white bg-danger mb-3" style="max-width: 100%">
+            <div class="card-body">
+              <p class="card-header"><i class="bi bi-info-circle-fill" style="color:white;font-size:15px;margin-right:10px"></i>Sebelum Menggunakan Aplikasi kasir ini, jalankan plugin_impresora_termica_64_bits yang berada di folder aplikasi </p>
+
+
+              <p class="card-text">
+                Agar dapat menjalankan printer, perlu untuk menjalankan plugin tersebut terlebih dahulu dengan cara klik 2x plugin_impresora_termica_64_bits yang berada di folder aplikasi. <br> <br> 
+                Jika muncul pesan dari windows smartscreen atau sejenisnya yang membuat tidak bisa menjalankan plugin, maka matikan terlebih dahulu windows smartscreen  di windows defender  dan anti virus ( jika memasang antivirus )
+                <br>
+                <a href="{{route('tutorial.mematikan_smartscreen')}}" class="link-warning">Cara Mematikan windows smartscreen</a>
+            </p>
+            </div>
+          </div>
     </div>
     
 @endsection
