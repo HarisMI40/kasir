@@ -52,7 +52,7 @@
 
               <p class="card-text">
                 Agar dapat menjalankan printer, perlu untuk menjalankan plugin tersebut terlebih dahulu dengan cara klik 2x plugin_impresora_termica_64_bits yang berada di folder aplikasi. <br> <br> 
-                Jika muncul pesan dari windows smartscreen atau sejenisnya yang membuat tidak bisa menjalankan plugin, maka matikan terlebih dahulu windows smartscreen  di windows defender  dan anti virus ( jika memasang antivirus )
+                Jika muncul pesan dari windows smartscreen atau sejenisnya yang membuat tidak bisa menjalankan plugin, maka matikan terlebih dahulu windows smartscreen  di windows defender  dan matikan anti virus ( jika memasang antivirus )
                 <br>
                 <a href="{{route('tutorial.mematikan_smartscreen')}}" class="link-warning">Cara Mematikan windows smartscreen</a>
             </p>
