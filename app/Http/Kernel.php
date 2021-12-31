@@ -2,6 +2,8 @@
 
 namespace App\Http;
 
+use Illuminate\Console\Scheduling\Schedule;
+// use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -13,6 +15,24 @@ class Kernel extends HttpKernel
      *
      * @var array
      */
+
+    protected $commands = [
+        'App\Console\Commands\DatabaseBackUp'
+    ];
+
+    protected function schedule(Schedule $schedule)
+    {
+        $schedule->command('jalankan:backup-db')->daily();
+    }
+
+    protected function commands()
+    {
+        $this->load(__DIR__.'/Commands');
+  
+        require base_path('routes/console.php');
+    }
+
+
     protected $middleware = [
         // \App\Http\Middleware\TrustHosts::class,
         \App\Http\Middleware\TrustProxies::class,
