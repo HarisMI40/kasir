@@ -24,7 +24,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('backup:run --only-db --disable-notifications')->everyMinute();
+        $schedule->command('backup:run --only-db --disable-notifications')->daily();
     }
 
     /**
