@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>Kasirku</title>
 <!-- 
 	<link rel="stylesheet" type="text/css" href="{{asset('css/home.css')}}"> -->
 	<link rel="stylesheet" type="text/css" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
