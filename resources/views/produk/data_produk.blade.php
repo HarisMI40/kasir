@@ -70,7 +70,7 @@
 						<td data-id="{{$product->kode_barang}}">{{$product->kode_barang}}</td>
 						<td data-id="{{$product->kode_barang}}">{{$product->nama_product}}</td>
 						<td data-id="{{$product->kode_barang}}">{{$product->qty}}</td>
-						<td data-id="{{$product->kode_barang}}">{{number_format($product->harga,2,",",".")}}</td>
+						<td data-id="{{$product->kode_barang}}">{{angka::titikPemisah($product->harga)}}</td>
 						<td data-id="{{$product->kode_barang}}">{{$product->created_at->format('d M Y')}}</td>
 						<td class="d-flex justify-content-rigth">
 							<form class="me-3" action="{{route('produk.delete', $product->id)}}" method="post">

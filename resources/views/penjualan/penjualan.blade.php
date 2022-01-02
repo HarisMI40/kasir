@@ -35,7 +35,7 @@
 								<td scope="row" data-id="{{$product->id}}">{{$i++}}</th>
 								<td data-id="{{$product->kode_barang}}">{{$product->nama_product}}</td>
 								<td data-id="{{$product->kode_barang}}">{{$product->qty}}</td>
-								<td data-id="{{$product->kode_barang}}">{{number_format($product->harga,2,",",".")}}</td>
+								<td data-id="{{$product->kode_barang}}">{{angka::titikPemisah($product->harga)}}</td>
 							</tr>
 						@endforeach
 						</tbody>
@@ -55,8 +55,8 @@
 				    		<tr>
 				    			<td width="40%">{{$detail->product->nama_product}}</td>
 				    			<td width="10%">{{$detail->qty}}</td>
-				    			<td width="25%">{{number_format($product->harga,2,",",".")}}</td>
-				    			<td width="20%">{{number_format($detail->product->harga * $detail->qty,2,",",".")}}</td>
+				    			<td width="25%">{{angka::titikPemisah($product->harga)}}</td>
+				    			<td width="20%">{{angka::titikPemisah($detail->product->harga * $detail->qty)}}</td>
 				    			<td width="5%">
 				    				<form method="post" action="{{route('detailPenjualan.destroy', $detail->id)}}">
 					    				@csrf
@@ -78,7 +78,7 @@
 						</tr>
 						<tr>
 							<td><strong>total</strong></td>
-							<td>: {{ number_format($penjualan->total_harga,2,",",".") }}</td>
+							<td>: {{ angka::titikPemisah($penjualan->total_harga) }}</td>
 						</tr>
 					</table>
 					<p>---------------------------------------</p>

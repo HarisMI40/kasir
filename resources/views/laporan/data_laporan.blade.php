@@ -19,7 +19,7 @@
                      <td scope="row">{{$i++}}</th>
                      <td>{{$product->tanggal_data}}</td>
                      <td>{{$product->total_qty}}</td>
-                     <td>{{number_format($product->total_pendapatan,2,",",".")}}</td>
+                     <td>{{angka::titikPemisah($product->total_pendapatan)}}</td>
                     
                  </tr>
              @endforeach
