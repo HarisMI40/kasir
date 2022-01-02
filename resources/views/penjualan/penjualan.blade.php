@@ -104,6 +104,25 @@
 		<script src="{{asset('js/penjualan/transaksi.js')}}"></script>
 		{{-- <script src="{{asset('js/penjualan/buy.js')}}"></script> --}}
 		<script>
+
+			function formatRupiah(nomor, prefix){
+				let angka = nomor.toString();
+				var number_string = angka.replace(/[^,\d]/g, '').toString(),
+				split   		= number_string.split(','),
+				sisa     		= split[0].length % 3,
+				rupiah     		= split[0].substr(0, sisa),
+				ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+	
+				// tambahkan titik jika yang di input sudah menjadi angka ribuan
+				if(ribuan){
+					separator = sisa ? '.' : '';
+					rupiah += separator + ribuan.join('.');
+				}
+	
+				rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+				return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+			}
+
 			jQuery(document).ready(function($){
 
 			// CREATE
@@ -123,7 +142,7 @@
 					dataType: 'json',
 					success: function (data) {
 					let data_product = data.data_product.detail_penjualan;
-					console.log(data);
+					// console.log(data);
 
 
 						// ==== Print =====
@@ -149,25 +168,39 @@
 						//   console.log(dataProduct.product.nama_product);
 						//   console.log(dataProduct.product.harga + " x " + dataProduct.qty + " " + dataProduct.sub_total);
 						impresora.write(no + ". "+dataProduct.product.nama_product+" \n");
-						impresora.write("   "+dataProduct.product.harga+" x "+dataProduct.qty+" "+dataProduct.sub_total+" \n");
+						impresora.write("   "+formatRupiah(dataProduct.product.harga)+" x "+dataProduct.qty+" "+formatRupiah(dataProduct.sub_total)+" \n");
+						
+						
+						// console.log(formatRupiah(dataProduct.product.harga));
+						// console.log(formatRupiah(dataProduct.sub_total));
 					});
 							// impresora.write("1. Abc Sambal  12 ML  Sachet \n");
 							// impresora.write("   500 x 100 500000 \n");
 							// impresora.write("2. Ultra Milk coklat \n");
 							// impresora.write("   5000 x 10 50000 \n");
+
+
 							impresora.setAlign("center");
 							impresora.write("--------------------------- \n");
 							impresora.setAlign("right");
-							impresora.write("Total : "+data.data_product.total_harga+" \n");
+							impresora.write("Total : "+formatRupiah(data.data_product.total_harga)+" \n");
+
+
 							// impresora.write("Bayar : 6000000 \n");
 							// impresora.write("Total : 15000 \n");
+
+
 							impresora.feed(1);
 							impresora.setAlign("center");
 							impresora.setFontSize(1, 1);
 							impresora.write("Terimakasih Telah Berbelanja \n");
+
+
 							// impresora.setFontSize(0, 0);
 							// impresora.cut();
 							// impresora.cutPartial(); 
+
+
 							impresora.imprimirEnImpresora(printer)
 								.then(valor => {
 									// document.querySelector("#nota").innerHTML="";
