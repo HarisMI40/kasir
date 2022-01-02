@@ -142,8 +142,6 @@
 					dataType: 'json',
 					success: function (data) {
 					let data_product = data.data_product.detail_penjualan;
-					// console.log(data);
-
 
 						// ==== Print =====
 						let printer = "POS58 Printer(2)"; // setting nama printer
@@ -160,50 +158,25 @@
 						let no = 1;
 
 					data_product.forEach(dataProduct => {
-						// let harga = dataProduct.toLocaleString(
-						// undefined, // leave undefined to use the browser's locale,
-						// 			// or use a string like 'en-US' to override it.
-						// { minimumFractionDigits: 2 }
-						// );
-						//   console.log(dataProduct.product.nama_product);
-						//   console.log(dataProduct.product.harga + " x " + dataProduct.qty + " " + dataProduct.sub_total);
 						impresora.write(no + ". "+dataProduct.product.nama_product+" \n");
 						impresora.write("   "+formatRupiah(dataProduct.product.harga)+" x "+dataProduct.qty+" "+formatRupiah(dataProduct.sub_total)+" \n");
-						
-						
 						// console.log(formatRupiah(dataProduct.product.harga));
 						// console.log(formatRupiah(dataProduct.sub_total));
 					});
-							// impresora.write("1. Abc Sambal  12 ML  Sachet \n");
-							// impresora.write("   500 x 100 500000 \n");
-							// impresora.write("2. Ultra Milk coklat \n");
-							// impresora.write("   5000 x 10 50000 \n");
-
-
+						
 							impresora.setAlign("center");
 							impresora.write("--------------------------- \n");
 							impresora.setAlign("right");
 							impresora.write("Total : "+formatRupiah(data.data_product.total_harga)+" \n");
-
-
-							// impresora.write("Bayar : 6000000 \n");
-							// impresora.write("Total : 15000 \n");
-
 
 							impresora.feed(1);
 							impresora.setAlign("center");
 							impresora.setFontSize(1, 1);
 							impresora.write("Terimakasih Telah Berbelanja \n");
 
-
-							// impresora.setFontSize(0, 0);
-							// impresora.cut();
-							// impresora.cutPartial(); 
-
-
 							impresora.imprimirEnImpresora(printer)
 								.then(valor => {
-									// document.querySelector("#nota").innerHTML="";
+								
 								});
 
 							document.querySelector("#nota").innerHTML="";
