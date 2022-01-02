@@ -5,6 +5,7 @@ use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\DetailPenjualanController;
 use App\Http\Controllers\Produk\ProdukController;
 use App\Http\Controllers\laporan\LaporanController;
+use App\Http\Controllers\akun\akunController;
 use App\Models\penjualan;
 use App\Models\product;
 
@@ -52,6 +53,15 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('laporan', [LaporanController::class, 'index'])->name('laporan');
 });
+
+//  ====== Data Akun ========
+Route::middleware(['auth'])->group(function () {
+    Route::get('akun', [akunController::class, 'index'])->name('akun');
+    Route::post('akun/update', [akunController::class, 'update'])->name('akun.update');
+    Route::post('akun/update-password', [akunController::class, 'update_password'])->name('akun.update.password');
+});
+
+
 Auth::routes();
 route::get('register', function(){
     $user = App\Models\User::count();

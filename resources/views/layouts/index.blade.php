@@ -53,7 +53,16 @@
 						<a class="nav-link" href="{{ route('laporan') }}">Laporan</a>
 					</li>
 
-					<li class="nav-item">
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						  Akun
+						</a>
+						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+						  <li><a class="dropdown-item" href="{{route('akun')}}">Edit Akun</a></li>
+						</ul>
+					</li>
+
+					<li class="nav-item mt-3">
 						<form action="{{ route('logout') }}" method="POST">
 							@method("POST")
 							@csrf
