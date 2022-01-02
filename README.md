@@ -37,3 +37,18 @@ dengan cara
     linux : cron
 
 untuk otomatis mengeksekusi command php artisan untuk backup
+
+## startup
+
+### xampp hidup otomatis pada saat komputer menyala
+
+    -   di xampp control, klik config
+    -   ceklis apache dan mysql pada autostart of modules
+    -   buka windows run ( logo windows+R) ketikan shell:startup
+    -   buat shortcut untuk xampp control di folder itu, agar xampp control akan otomatis dijalankan
+
+### buat icon applikasi web kasir di desktop
+
+    - buka aplikasi web kasir di google chrome
+    - klik icon titik 3 di pojok kanan atas
+    - klik more tools > klik create shortcut
