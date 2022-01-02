@@ -53,14 +53,9 @@
 
 @section('script')
     <script src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
-    {{-- <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script> --}}
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.11.3/af-2.3.7/b-2.1.1/b-colvis-2.1.1/b-html5-2.1.1/b-print-2.1.1/date-1.1.1/datatables.min.js"></script>
-
-    
-    {{-- <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script> --}}
+    <script type="text/javascript" src="{{asset('datatable/DataTables-1.11.3/js/jquery.dataTables.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('datatable/pdfmake-0.1.36/pdfmake.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('datatable/datatables.min.js')}}"></script>
 
     <script>
         $(document).ready( function () {
