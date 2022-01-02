@@ -1,11 +1,11 @@
 ## Buat Halaman Home
 
-## Di transaksi Penjualan
+## Di transaksi Penjualan ( SUDAH )
     - tambahkan kode barang / kode barcode di tabel produk
 (sudah) - tambahkan kolom baru kode_barang atau kode_barcode 
         - untuk id tidak pakai auto increment, tapi misal diganti dengan uuid
 
-    - Tambahkan fitur direct print thermal
+    - Tambahkan fitur direct print thermal ( SUDAH )
         - tambahkan program direct ke print thermal setelah transaksi sukses
         - bisa juga print via handphone
         
@@ -16,11 +16,11 @@
                 4. coba pakai qztray
                 5. coba pakai parzebite menggunakan pc lab
 
-    - improve Desain
+    - improve Desain ( SUDAH )
         - Lihat desain di referensi yang lain biar tambah bagus
         - tombol buy di buat supaya memanjang
 
-    - Gunakan assynchoronous
+    - Gunakan assynchoronous (SUDAH UNTUK PENJUALAN )
         - Menggunakan Ajax atau livewire
         - Menggunakan react js  
 
@@ -29,13 +29,25 @@
         - total uang yang diberikan pembeli dikurangi total pembelian
         - buat text uang menampilkan total kembalian
 
-## Buat Tambah Produk
+## Buat Tambah Produk (SUDAH )
     - buat halaman crud produk dasar ( sudah )
-    - improve desain
 
-## Buat Laporan
+## Buat Laporan ( SUDAH TAPI MENDING CHECK LAGI KEMANAN NYA)
     - keamanan
         - amankan dari sql injection khususnya di laporanController yang menggunakan selectRaw ( raw query yang rentan sql injection) 
+
+## membuat format angka ke rupiah
+    1. untuk yang ada di table
+    2. untuk inputan
+        1. pas input langsung menambhakan titik pas sudah mencapai ratusan ke atas
+        2. di database tetap angka biasa tanpa titik pemisah
+
+## membuat halaman persiapan untuk menggunakan applikasi :
+    1. membuat database : membuat halaman untuk generate database dengan sql
+    2. tambah path untuk mysqldump dan php : membuat perintah command line untuk tambah path 
+    3. membuat akun admin : membuat halaman tambah admin ( jika sudah ada data admin, maka halaman tidak bisa di akses)
+
+
 
 ## Secara Garis Besar
   - Fungsi
