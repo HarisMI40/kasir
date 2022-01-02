@@ -18,7 +18,7 @@
                         @CSRF
                         <div class="mb-3">
                             <label for="nama" class="form-label">Nama</label>
-                            <input type="text" name="nama" id="nama" class="form-control" placeholder="" aria-describedby="input nama">
+                            <input type="text" name="nama" value="{{Auth::user()->name}}" id="nama" class="form-control" placeholder="" aria-describedby="input nama">
                             @error('nama')
                                 <small id="helpId" class="text-danger">Masukan Nama Dengan Benar</small>
                             @enderror
@@ -26,7 +26,7 @@
     
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" name="email" id="email" class="form-control" placeholder="" aria-describedby="input email">
+                            <input type="email" name="email" value="{{Auth::user()->email}}" id="email" class="form-control" placeholder="" aria-describedby="input email">
                             @error('email')
                                 <small id="helpId" class="text-danger">Masukan Email Dengan Benar</small>
                             @enderror
