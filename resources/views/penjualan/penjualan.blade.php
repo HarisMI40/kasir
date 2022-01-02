@@ -35,7 +35,7 @@
 								<td scope="row" data-id="{{$product->id}}">{{$i++}}</th>
 								<td data-id="{{$product->kode_barang}}">{{$product->nama_product}}</td>
 								<td data-id="{{$product->kode_barang}}">{{$product->qty}}</td>
-								<td data-id="{{$product->kode_barang}}">{{$product->harga}}</td>
+								<td data-id="{{$product->kode_barang}}">{{number_format($product->harga,2,",",".")}}</td>
 							</tr>
 						@endforeach
 						</tbody>
@@ -55,8 +55,8 @@
 				    		<tr>
 				    			<td width="40%">{{$detail->product->nama_product}}</td>
 				    			<td width="10%">{{$detail->qty}}</td>
-				    			<td width="25%">{{$detail->product->harga}}</td>
-				    			<td width="20%">{{$detail->product->harga * $detail->qty}}</td>
+				    			<td width="25%">{{number_format($product->harga,2,",",".")}}</td>
+				    			<td width="20%">{{number_format($detail->product->harga * $detail->qty,2,",",".")}}</td>
 				    			<td width="5%">
 				    				<form method="post" action="{{route('detailPenjualan.destroy', $detail->id)}}">
 					    				@csrf
@@ -78,7 +78,7 @@
 						</tr>
 						<tr>
 							<td><strong>total</strong></td>
-							<td>: {{$penjualan->total_harga}}</td>
+							<td>: {{ number_format($penjualan->total_harga,2,",",".") }}</td>
 						</tr>
 					</table>
 					<p>---------------------------------------</p>
@@ -141,6 +141,11 @@
 						let no = 1;
 
 					data_product.forEach(dataProduct => {
+						// let harga = dataProduct.toLocaleString(
+						// undefined, // leave undefined to use the browser's locale,
+						// 			// or use a string like 'en-US' to override it.
+						// { minimumFractionDigits: 2 }
+						// );
 						//   console.log(dataProduct.product.nama_product);
 						//   console.log(dataProduct.product.harga + " x " + dataProduct.qty + " " + dataProduct.sub_total);
 						impresora.write(no + ". "+dataProduct.product.nama_product+" \n");
