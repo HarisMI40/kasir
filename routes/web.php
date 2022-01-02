@@ -54,7 +54,12 @@ Route::middleware(['auth'])->group(function () {
 });
 Auth::routes();
 route::get('register', function(){
-    return abort(404);
-});
+    $user = App\Models\User::count();
+    if($user > 0){
+        return abort(404);
+    }
+
+    return view('auth.register');
+})->name('register');
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
