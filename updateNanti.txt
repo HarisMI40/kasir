@@ -47,7 +47,7 @@
     2. tambah path untuk mysqldump dan php : membuat perintah command line untuk tambah path 
     3. membuat akun admin : membuat halaman tambah admin ( jika sudah ada data admin, maka halaman tidak bisa di akses)
 
-## membuat halaman akun
+## membuat halaman akun ( SUDAH )
     1. membuat ganti password
     2. membuat ganti email
     3. membuat ganti username
