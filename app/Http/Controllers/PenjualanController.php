@@ -32,7 +32,7 @@ class PenjualanController extends Controller
 
         $products = product::all();
         // return $penjualan->DetailPenjualan;
-
+        // return $penjualan_terakhir;
         return view('penjualan.penjualan', compact('products','penjualan', 'id'));
     }
 
@@ -107,9 +107,22 @@ class PenjualanController extends Controller
         //  return $data_product_yang_dibeli;
         //  return redirect()->back();
         // return Response::json("berhasilll");
+        $penjualan_terakhir = penjualan::get()->last();
+        // return $penjualan_terakhir;
+        if(!$penjualan_terakhir){ //jika tidak ada data
+            $id = "1";
+        }else{
+            $id = $penjualan_terakhir->id;
+            
+            if($penjualan_terakhir->done){
+                $id = $penjualan_terakhir->id + 1;
+            }
+        }
+
         return response()->json([
             'success' => true,
             'data_product' => $data_product_yang_dibeli,
+            'id_penjualan' => $id
         ], 200);
     }
 

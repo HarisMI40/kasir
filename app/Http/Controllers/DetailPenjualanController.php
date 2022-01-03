@@ -38,8 +38,14 @@ class detailPenjualanController extends Controller
      */
     public function store(Request $request, $id, $kodeBarcode)
     {
-        $this->tambahProduct($id, $kodeBarcode);
-        return redirect()->back();
+        $data = $this->tambahProduct($id, $kodeBarcode);
+        
+            return response()->json([
+                'success' => true,
+                'data' => $data,
+            ], 200);
+        
+        // return redirect()->back();
     }
 
     public function scanBarcode(Request $request, $id)
@@ -124,6 +130,9 @@ class detailPenjualanController extends Controller
                  echo "tidak bisa di ambil lagi";
                  die();
              }
+
+            return penjualan::with('DetailPenjualan', 'DetailPenjualan.product')->where('id', $penjualan->id)->first();
+
     }
 
 

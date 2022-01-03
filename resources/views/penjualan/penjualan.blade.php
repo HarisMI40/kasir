@@ -16,6 +16,7 @@
 						</div>
 					</form>
 					<table class="table table-bordered table-hover table-sm table-striped">
+						<input type="hidden" name="id" value={{$id}} id="penjualanTerakhir">
 						<thead>
 							<tr>
 								<th scope="col">#</th>
@@ -28,13 +29,13 @@
 						<?php $i=1?>
 						@foreach($products as $product)
 							<tr>
-								<form data-id="{{$product->kode_barang}}" action="{{route('detailPenjualan.store', [$id, $product->kode_barang])}}" method="POST">
+								{{-- <form data-id="{{$product->kode_barang}}" action="{{route('detailPenjualan.store', [$id, $product->kode_barang])}}" method="POST">
 							    	@csrf
 							    	@method('POST')
-								</form>
+								</form> --}}
 								<td scope="row" data-id="{{$product->id}}">{{$i++}}</th>
 								<td data-id="{{$product->kode_barang}}">{{$product->nama_product}}</td>
-								<td data-id="{{$product->kode_barang}}">{{$product->qty}}</td>
+								<td data-id="{{$product->kode_barang}}" id="qtyProduct">{{$product->qty}}</td>
 								<td data-id="{{$product->kode_barang}}">{{angka::titikPemisah($product->harga)}}</td>
 							</tr>
 						@endforeach
@@ -48,9 +49,11 @@
 			</div>
 
 			<div class="col-md-4 border p-3 shadow" id="nota">
-			  @if($penjualan)
-				@foreach($penjualan->DetailPenjualan as $detail)
-					<div class="col-md-12 mb-3">
+				<table width="100%" id="table_nota">
+				</table>
+			  {{-- @if($penjualan)
+				@foreach($penjualan->DetailPenjualan as $detail) --}}
+					{{-- <div class="col-md-12 mb-3">
 						<table width="100%" id="table_nota">
 				    		<tr>
 				    			<td width="40%">{{$detail->product->nama_product}}</td>
@@ -68,29 +71,32 @@
 				    			</td>
 				    		</tr>
 				    	</table>
-					</div>
-				@endforeach
+					</div> --}}
+				{{-- @endforeach --}}
+				<div class="d-none" id="div_table_total">
 					<p>---------------------------------------</p>
 					<table width="50%" id="table_total">
-						<tr>
+						{{-- <tr>
 							<td><strong>qty</strong></td>
 							<td>: {{$penjualan->total_qty}}</td>
 						</tr>
 						<tr>
 							<td><strong>total</strong></td>
 							<td>: {{ angka::titikPemisah($penjualan->total_harga) }}</td>
-						</tr>
+						</tr> --}}
 					</table>
 					<p>---------------------------------------</p>
+				</div>
+					
 					{{-- <form method="post" action="{{route('penjualan.update', $penjualan->id)}}">
 						@csrf
 						 @method('PUT') --}}
-						<input type="hidden" name="id_penjualan" id="id_penjualan" value="{{$penjualan->id}}">
-						<div class="d-grid gap-2">
+						<input type="hidden" name="id_penjualan" id="id_penjualan" value="{{$id}}">
+						<div class="d-grid gap-2 d-none" id="div_button_buy">
 							<button type="submit" class="btn btn-success mt-4" id="buy">Buy</button>
-						</div>
+						</div> 
 					{{-- </form> --}}
-			  @endif
+			  {{-- @endif --}}
 			</div>
 
 
@@ -102,8 +108,103 @@
 	@section('script')
 		{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> --}}
 		<script src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
-		<script src="{{asset('js/penjualan/transaksi.js')}}"></script>
+
+		{{-- <script src="{{asset('js/penjualan/transaksi.js')}}"></script> --}}
+
 		{{-- <script src="{{asset('js/penjualan/buy.js')}}"></script> --}}
+
+		<script>
+			const table = document.querySelector("table");
+
+table.addEventListener('click', function(event){
+    // console.log(event.target.tagName);
+    if (event.target.tagName === "TD"){
+        let id = event.target.getAttribute("data-id");
+        let form = document.querySelector(`form[data-id="${id}"]`);
+
+        let tambahkanProduk = confirm("Tambahkan Produk ? ");
+        if(tambahkanProduk){
+            // form.submit();
+            // ajax jquery
+            jQuery(document).ready(function($){
+
+				// CREATE
+					$.ajaxSetup({
+						headers: {
+							'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+						}
+					});
+					event.preventDefault();
+					var id_penjualan_terakhir = jQuery("#id_penjualan").val();
+					var type = "POST";
+					var ajaxurl = 'penjualan/add/'+id_penjualan_terakhir+'/'+id;
+					$.ajax({
+						type: type,
+						url: ajaxurl,
+						dataType: 'json',
+						success: function (data) {
+							let detailPenjualan = data.data.detail_penjualan;
+							// alert('success');
+                            console.log('success');
+                            console.log(data);
+							console.log(detailPenjualan);
+                            $("#table_nota").html("");
+                            
+							// menampilkan produk yang dibelis
+                            detailPenjualan.forEach(detail => {
+                                $("#table_nota").append(`
+									<tr>
+										<td width="40%">${detail.product.nama_product}</td>
+										<td width="10%">${detail.qty}</td>
+										<td width="25%">${detail.sub_total}</td>
+										<td width="20%">${detail.product.harga * detail.qty}</td>
+										<td width="5%">
+												<button type="submit" class="btn btn-danger btn-sm"
+												><i class="bi bi-trash" style="color:white"></i></button>
+										</td>
+									</tr>
+								`);
+
+								// update quantity di table produk
+								$("td[data-id='"+detail.product.kode_barang+"']#qtyProduct").text(detail.product.qty)
+							
+                            });
+
+							// menampilkan table total
+							$("#div_table_total").removeClass('d-none');
+							$("#table_total").html(`
+								<tr>
+									<td><strong>qty</strong></td>
+									<td>: ${data.data.total_qty}</td>
+								</tr>
+								<tr>
+									<td><strong>total</strong></td>
+									<td>: ${data.data.total_harga}</td>
+								</tr> 
+							`);
+							
+							// menampilkan button buy
+							$("#div_button_buy").removeClass("d-none");
+							// $("#div_button_buy").html(`
+							// 		<button type="submit" class="btn btn-success mt-4" id="buy">Buy</button>
+							// `);
+
+							
+
+						},
+						error: function (data) {
+							console.log(data);
+                            console.log('error : ' + data.message);
+						}
+					});
+			});
+            // tutup ajax jquery
+            
+        }
+    }
+});
+		</script>
+
 		<script>
 
 			function formatRupiah(nomor, prefix){
@@ -126,71 +227,77 @@
 
 			jQuery(document).ready(function($){
 
-			// CREATE
-			$("#buy").click(function (e) {
-				$.ajaxSetup({
-					headers: {
-						'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
-					}
-				});
-				e.preventDefault();
-				var id_penjualan = jQuery("#id_penjualan").val();
-				var type = "PUT";
-				var ajaxurl = 'penjualan/'+id_penjualan;
-				$.ajax({
-					type: type,
-					url: ajaxurl,
-					dataType: 'json',
-					success: function (data) {
-					let data_product = data.data_product.detail_penjualan;
-
-						// ==== Print =====
-						let printer = "POS58 Printer(2)"; // setting nama printer
-						let impresora = new Impresora(); // inisiasi
-
-						impresora.feed(1);
-						impresora.setAlign("center");
-						impresora.setFontSize(2, 2);
-						impresora.write("TOKO Serba Ada \n");
-						impresora.setFontSize(1, 1);
-						impresora.write("Jl garnet, permata regency \n Cikampek Utara \n");
-						impresora.write("--------------------------- \n");
-						impresora.setAlign("left");
-						let no = 1;
-
-					data_product.forEach(dataProduct => {
-						impresora.write(no + ". "+dataProduct.product.nama_product+" \n");
-						impresora.write("   "+formatRupiah(dataProduct.product.harga)+" x "+dataProduct.qty+" "+formatRupiah(dataProduct.sub_total)+" \n");
-						// console.log(formatRupiah(dataProduct.product.harga));
-						// console.log(formatRupiah(dataProduct.sub_total));
+				// CREATE
+				$("#buy").click(function (e) {
+					$.ajaxSetup({
+						headers: {
+							'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+						}
 					});
-						
-							impresora.setAlign("center");
-							impresora.write("--------------------------- \n");
-							impresora.setAlign("right");
-							impresora.write("Total : "+formatRupiah(data.data_product.total_harga)+" \n");
+					e.preventDefault();
+					var id_penjualan = jQuery("#id_penjualan").val();
+					var type = "PUT";
+					var ajaxurl = 'penjualan/'+id_penjualan;
+					$.ajax({
+						type: type,
+						url: ajaxurl,
+						dataType: 'json',
+						success: function (data) {
+							let data_product = data.data_product.detail_penjualan;
+							
+							$("#table_nota").html("");
+							$("#table_total").html("");
+							$("#div_table_total").addClass("d-none");
+							$("#div_button_buy ").addClass("d-none");
+							
+							$("#id_penjualan").val(data.id_penjualan);
+							
+							// // ==== Print =====
+							// let printer = "POS58 Printer(2)"; // setting nama printer
+							// let impresora = new Impresora(); // inisiasi
 
-							impresora.feed(1);
-							impresora.setAlign("center");
-							impresora.setFontSize(1, 1);
-							impresora.write("Terimakasih Telah Berbelanja \n");
+							// impresora.feed(1);
+							// impresora.setAlign("center");
+							// impresora.setFontSize(2, 2);
+							// impresora.write("TOKO Serba Ada \n");
+							// impresora.setFontSize(1, 1);
+							// impresora.write("Jl garnet, permata regency \n Cikampek Utara \n");
+							// impresora.write("--------------------------- \n");
+							// impresora.setAlign("left");
+							let no = 1;
 
-							impresora.imprimirEnImpresora(printer)
-								.then(valor => {
-								
-								});
+							// data_product.forEach(dataProduct => {
+							// 	impresora.write(no + ". "+dataProduct.product.nama_product+" \n");
+							// 	impresora.write("   "+formatRupiah(dataProduct.product.harga)+" x "+dataProduct.qty+" "+formatRupiah(dataProduct.sub_total)+" \n");
+							// 	// console.log(formatRupiah(dataProduct.product.harga));
+							// 	// console.log(formatRupiah(dataProduct.sub_total));
+							// });
+							
+								// impresora.setAlign("center");
+								// impresora.write("--------------------------- \n");
+								// impresora.setAlign("right");
+								// impresora.write("Total : "+formatRupiah(data.data_product.total_harga)+" \n");
 
-							document.querySelector("#nota").innerHTML="";
-							window.location="{{route('penjualan')}}"
-					},
-					error: function (data) {
-						console.log(data);
-					}
+								// impresora.feed(1);
+								// impresora.setAlign("center");
+								// impresora.setFontSize(1, 1);
+								// impresora.write("Terimakasih Telah Berbelanja \n");
+
+								// impresora.imprimirEnImpresora(printer)
+								// 	.then(valor => {
+										
+								// 	});
+
+								// document.querySelector("#nota").innerHTML="";
+								// window.location="{{route('penjualan')}}"
+						},
+						error: function (data) {
+							console.log(data);
+						}
+					});
 				});
 			});
-		});
 		</script>
 
 		<script src="{{asset('js/penjualan/impresora.js')}}"></script>
-		<script src="{{asset('js/penjualan/script.js')}}"></script>
 	@endsection
