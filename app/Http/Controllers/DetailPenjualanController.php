@@ -40,10 +40,18 @@ class detailPenjualanController extends Controller
     {
         $data = $this->tambahProduct($id, $kodeBarcode);
         
-            return response()->json([
-                'success' => true,
-                'data' => $data,
-            ], 200);
+            if($data['success'] == true){
+                return response()->json([
+                    'success' => true,
+                    'data' => $data['data'],
+                ], 200);
+            }else{
+                return response()->json([
+                    'success' => false,
+                    'message' => $data['message'],
+                ], 500);
+            }
+           
         
         // return redirect()->back();
     }
@@ -127,12 +135,14 @@ class detailPenjualanController extends Controller
              if($product->qty > 0 ){
                  $product->update(['qty' => $product->qty - 1]);
              }else{
-                 echo "tidak bisa di ambil lagi";
-                 die();
+                 return $tambah = ['success' => false, 'message' => "Produk Sudah Habis !"];
              }
 
-            return penjualan::with('DetailPenjualan', 'DetailPenjualan.product')->where('id', $penjualan->id)->first();
-
+            return $tambah = [
+                'success' => true,
+                'data' => penjualan::with('DetailPenjualan', 'DetailPenjualan.product')->where('id', $penjualan->id)->first()
+            ];
+            
     }
 
 

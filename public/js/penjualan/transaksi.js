@@ -40,7 +40,7 @@ const table = document.querySelector("table");
 									<tr>
 										<td width="40%">${detail.product.nama_product}</td>
 										<td width="10%">${detail.qty}</td>
-										<td width="25%">${detail.sub_total}</td>
+										<td width="25%">${detail.product.harga}</td>
 										<td width="20%">${detail.product.harga * detail.qty}</td>
 										<td width="5%">
 												<button type="submit" class="btn btn-danger btn-sm"
@@ -77,8 +77,9 @@ const table = document.querySelector("table");
 
 						},
 						error: function (data) {
-							console.log(data);
-                            console.log('error : ' + data.message);
+							console.log("Error" + data.responseJSON.message);
+                            alert("Kesalahan : " + data.responseJSON.message);
+                            // console.log('error : ' + data);
 						}
 					});
 			});
