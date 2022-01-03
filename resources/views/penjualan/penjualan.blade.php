@@ -110,6 +110,7 @@
 		{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> --}}
 		<script src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
 		<script src="{{asset('js/angka/format_rupiah.js')}}"></script>
+		<script src="{{asset('js/penjualan/tampil_element.js')}}"></script>
 		<script src="{{asset('js/penjualan/transaksi.js')}}"></script>
 		<script src="{{asset('js/penjualan/cari_kodeBarang.js')}}"></script>
 		<script src="{{asset('js/penjualan/hapus_barang.js')}}"></script>
