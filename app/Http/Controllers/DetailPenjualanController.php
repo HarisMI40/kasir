@@ -59,10 +59,21 @@ class detailPenjualanController extends Controller
     public function scanBarcode(Request $request, $id)
     {
         // return $id. " ". $request->kodeBarcode ;
-        $product = product::where('kode_barang', $request->kodeBarcode)->first();
+        // $product = product::where('kode_barang', $request->kodeBarcode)->first();
         
-        $this->tambahProduct($id, $product->kode_barang);
-        return redirect()->back();
+       $data = $this->tambahProduct($id, $request->kodeBarcode);
+
+        if($data['success'] == true){
+            return response()->json([
+                'success' => true,
+                'data' => $data['data'],
+            ], 200);
+        }else{
+            return response()->json([
+                'success' => false,
+                'message' => $data['message'],
+            ], 500);
+        }
     }
 
 
@@ -71,7 +82,24 @@ class detailPenjualanController extends Controller
          // dd('hiiiii');
         //  return date('dd-mm-yy');
          $penjualan = penjualan::find($id);
+        
          $product = product::where('kode_barang', $kodeBarcode)->first();
+
+        //  jika kode barang tidak ditemukan di database
+        if($product === null){
+            return $tambah = ['success' => false, 'message' => "Kode Barang yang dicari Tidak Ditemukan !"];
+         }
+
+
+        
+         if($product->qty > 0 ){
+            $product->update(['qty' => $product->qty - 1]);
+
+        }else{  //jika qty nya 0 yang artinya produk itu habis
+            return $tambah = ['success' => false, 'message' => "Produk Sudah Habis !"];
+        }
+
+
 
          if(!$penjualan){
              /*
@@ -129,14 +157,8 @@ class detailPenjualanController extends Controller
                     'total_qty' => $penjualan->total_qty + 1,
                     'total_harga' => $penjualan->total_harga + (1 * $product->harga)
                 ]);   
-            } 
- 
-             // dd($product->qty);
-             if($product->qty > 0 ){
-                 $product->update(['qty' => $product->qty - 1]);
-             }else{
-                 return $tambah = ['success' => false, 'message' => "Produk Sudah Habis !"];
-             }
+            }
+            
 
             return $tambah = [
                 'success' => true,

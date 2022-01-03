@@ -7,9 +7,10 @@
 			<div class="col-md-8 p-3" id="konten">
 
 				<div class="row">
-				    <form action="{{route('scanBarcode.store', [$id])}}" method="post" autocomplete="off">
+				    {{-- <form action="{{route('scanBarcode.store', [$id])}}" method="post" autocomplete="off">
 						@method("POST")
-						@CSRF
+						@CSRF --}}
+					<form id="form_cariBarang">
 						<div class="mb-3">
 							<label for="cariBarang" class="form-label">Scan Barcode / Cari Barang</label>
 							<input type="text" class="form-control" id="cariBarang" name="kodeBarcode" >
@@ -110,6 +111,7 @@
 		<script src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
 		<script src="{{asset('js/angka/format_rupiah.js')}}"></script>
 		<script src="{{asset('js/penjualan/transaksi.js')}}"></script>
+		<script src="{{asset('js/penjualan/cari_kodeBarang.js')}}"></script>
 		<script src="{{asset('js/penjualan/buy.js')}}"></script>
 		<script src="{{asset('js/penjualan/impresora.js')}}"></script>
 	@endsection
