@@ -52,6 +52,12 @@
     2. membuat ganti email
     3. membuat ganti username
 
+## assynchoronous di penjualan 
+   1. assynchoronous hapus
+    1. Hapus satu saja
+    2. Hapus Semua produk yang sama dalam penjualan sekaligus ( direkomendasikan pilih yang nomor satu saja )
+
+  2. Menggunakan UUID di Penjualan
 
 ## Secara Garis Besar
   - Fungsi

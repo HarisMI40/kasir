@@ -230,7 +230,11 @@ class detailPenjualanController extends Controller
         $product->update(['qty' => $total]);
 
 
-
-        return redirect()->back();
+        return $data = [
+            'success' => true,
+            'data' => penjualan::with('DetailPenjualan', 'DetailPenjualan.product')->where('id', $penjualan->id)->first(),
+            'produk_terhapus' => $product 
+        ];
+        // return redirect()->back();
     }
 }

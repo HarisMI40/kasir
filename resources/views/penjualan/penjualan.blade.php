@@ -112,6 +112,7 @@
 		<script src="{{asset('js/angka/format_rupiah.js')}}"></script>
 		<script src="{{asset('js/penjualan/transaksi.js')}}"></script>
 		<script src="{{asset('js/penjualan/cari_kodeBarang.js')}}"></script>
+		<script src="{{asset('js/penjualan/hapus_barang.js')}}"></script>
 		<script src="{{asset('js/penjualan/buy.js')}}"></script>
 		<script src="{{asset('js/penjualan/impresora.js')}}"></script>
 	@endsection
