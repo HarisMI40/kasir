@@ -2,11 +2,10 @@
 <html>
 <head>
 	<title>Kasirku</title>
-<!-- 
-	<link rel="stylesheet" type="text/css" href="{{asset('css/home.css')}}"> -->
+
 	<link rel="stylesheet" type="text/css" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+	<link rel="stylesheet" href="{{asset('icon/icons-1.7.2/font/bootstrap-icons.css')}}">
 	<link rel="icon" href="{{asset('img/logo/logo.ico')}}">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<style>
